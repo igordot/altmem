@@ -1,20 +1,21 @@
-suppressPackageStartupMessages(library(SummarizedExperiment))
-suppressPackageStartupMessages(library(HDCytoData))
-
-test_that("altmem works with Samusik_01_SE from HDCytoData", {
+test_that("altmem() with HDCytoData Samusik_01", {
   # CyTOF dataset containing 39 markers with 24 gated cell population labels
-  se <- suppressMessages(Samusik_01_SE())
-  # Remove unassigned cells
+  se <- suppressMessages(HDCytoData::Samusik_01_SE())
+
+  # Remove unassigned cells and downsample large populations
+  # table(rowData(se)$population_id)
   se <- se[rowData(se)$population_id != "unassigned", ]
-  # Subset object to speed up testing
   set.seed(123)
-  idx <- sample(nrow(se), 20000)
+  idx <- unlist(tapply(seq_len(nrow(se)), rowData(se)$population_id, \(i) {
+    if (length(i) > 500) sample(i, 500) else i
+  }))
   se <- se[idx, ]
   # Subset to cell type markers only
   se <- se[, colData(se)$marker_class == "type"]
   # Transform data using asinh with cofactor 5
   assay(se) <- asinh(assay(se) / 5)
 
+  # Run MEM
   res <- altmem(se, cluster_col = "population_id")
 
   # Returns a list with expected MEM slots
