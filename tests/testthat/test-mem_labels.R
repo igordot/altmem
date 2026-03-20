@@ -13,7 +13,7 @@ test_that("mem_labels()", {
     `File Order` = "test"
   )
 
-  labels <- mem_labels(mem_result, min_score = 0)
+  labels <- mem_labels(mem_result, min_label_score = 0)
   expect_type(labels, "character")
   expect_named(labels, c("clusterA", "clusterB"))
   expect_match(labels[["clusterA"]], "clusterA")
@@ -21,16 +21,21 @@ test_that("mem_labels()", {
   expect_match(labels[["clusterA"]], "CD3")
 
   # min_score filters low-scoring markers
-  labels <- mem_labels(mem_result, min_score = 3)
+  labels <- mem_labels(mem_result, min_label_score = 3)
   expect_no_match(labels[["clusterA"]], "CD8")
   expect_match(labels[["clusterA"]], "CD4")
 
-  # max_markers caps markers per direction
-  labels <- mem_labels(mem_result, min_score = 0, max_markers = 1)
+  # max_label_markers caps markers per direction
+  labels <- mem_labels(mem_result, min_label_score = 0, max_label_markers = 1)
   expect_match(labels[["clusterA"]], "CD3")
   expect_no_match(labels[["clusterA"]], "CD4")
   expect_match(labels[["clusterB"]], "CD4")
   expect_no_match(labels[["clusterB"]], "CD3")
+
+  # show_label_scores = FALSE omits numeric values
+  labels <- mem_labels(mem_result, min_label_score = 0, show_label_scores = FALSE)
+  expect_match(labels[["clusterA"]], "CD4")
+  expect_no_match(labels[["clusterA"]], "\\+5")
 
   # errors on invalid input
   expect_error(mem_labels(list(a = 1)))
