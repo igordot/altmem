@@ -8,7 +8,10 @@ License: MIT + file LICENSE
 Depends:
     R (>= 4.4)
 Imports:
+    circlize,
+    ComplexHeatmap,
     cytoMEM,
+    RColorBrewer,
     SummarizedExperiment
 Suggests:
     CATALYST,
