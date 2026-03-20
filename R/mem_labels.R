@@ -8,11 +8,14 @@
 #' @param mem_result The return value of [altmem()] or [cytoMEM::MEM()].
 #' @param min_score Minimum absolute MEM score for a marker to be
 #'   included in the label. Defaults to `1`.
+#' @param max_markers Maximum number of markers to include per direction
+#'   (positive and negative) in each label. Defaults to `5`.
 #'
 #' @returns A named character vector.
 #'
+#' @importFrom stats setNames
 #' @export
-mem_labels <- function(mem_result, min_score = 1) {
+mem_labels <- function(mem_result, min_score = 1, max_markers = 5) {
   if (!is_mem_output(mem_result)) {
     stop("Invalid MEM output.")
   }
@@ -29,6 +32,9 @@ mem_labels <- function(mem_result, min_score = 1) {
 
     pos <- pos[order(pos, decreasing = TRUE)]
     neg <- neg[order(abs(neg), decreasing = TRUE)]
+
+    pos <- pos[seq_len(min(length(pos), max_markers))]
+    neg <- neg[seq_len(min(length(neg), max_markers))]
 
     if (length(pos) > 0) {
       pos_str <- paste(

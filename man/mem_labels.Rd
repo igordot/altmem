@@ -4,20 +4,23 @@
 \alias{mem_labels}
 \title{Create MEM-enriched cluster labels}
 \usage{
-mem_labels(mem_result, min_score = 1)
+mem_labels(mem_result, min_score = 1, max_markers = 5)
 }
 \arguments{
 \item{mem_result}{The return value of \code{\link[=altmem]{altmem()}} or \code{\link[cytoMEM:MEM]{cytoMEM::MEM()}}.}
 
 \item{min_score}{Minimum absolute MEM score for a marker to be
 included in the label. Defaults to \code{1}.}
+
+\item{max_markers}{Maximum number of markers to include per direction
+(positive and negative) in each label. Defaults to \code{5}.}
 }
 \value{
 A named character vector.
 }
 \description{
-Generates descriptive labels for each cluster based on MEM scores,
-following the same format as cytoMEM's internal
-function. Markers are ranked by absolute MEM score and separated
-into positively and negatively enriched groups.
+Generates descriptive labels for each cluster that include measured features
+specifically enriched on the population based on MEM scores, following the
+cytoMEM format. Markers are ranked by absolute MEM score and separated into
+positively and negatively enriched groups.
 }
