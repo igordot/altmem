@@ -101,19 +101,13 @@ altmem <- function(x,
   )
 
   # Validate MEM output and restore original cluster labels as row names
+  if (!is_mem_output(mem_res)) {
+    stop("Invalid MEM() output.")
+  }
+
   int_to_label <- setNames(labels, as.character(seq_along(labels)))
   expected_slots <- c("MEM_matrix", "MAGpop", "MAGref", "IQRpop", "IQRref")
-  missing_slots <- setdiff(expected_slots, names(mem_res))
-  if (length(missing_slots) > 0) {
-    stop("MEM() output is missing slots: ", toString(missing_slots))
-  }
   for (slot in expected_slots) {
-    if (nrow(mem_res[[slot]][[1]]) != length(labels)) {
-      stop(
-        slot, " has ", nrow(mem_res[[slot]][[1]]), " rows but expected ",
-        length(labels), " clusters."
-      )
-    }
     rn <- rownames(mem_res[[slot]][[1]])
     rownames(mem_res[[slot]][[1]]) <- unname(int_to_label[rn])
   }
