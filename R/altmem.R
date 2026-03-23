@@ -35,17 +35,15 @@
 altmem <- function(x,
                    cluster_col,
                    assay_name = "exprs",
+                   markers = "all",
                    transform = FALSE,
                    choose.markers = FALSE,
-                   markers = "all",
                    choose.ref = FALSE,
                    zero.ref = FALSE,
                    IQR.thresh = NULL) {
-
   if (is.data.frame(x)) {
-    if (!"cluster" %in% names(x)) {
-      stop("Data frame must have a 'cluster' column.")
-    }
+    # Rename the cluster column to "cluster" for data frames
+    names(x)[names(x) == cluster_col] <- "cluster"
     clusters_original <- x[["cluster"]]
     exprs_mat <- as.matrix(x[, setdiff(names(x), "cluster")])
   } else if (inherits(x, "SummarizedExperiment")) {
