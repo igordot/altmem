@@ -15,6 +15,10 @@ test_that("altmem() with HDCytoData Samusik_01", {
   # Transform data using asinh with cofactor 5
   assay(se) <- asinh(assay(se) / 5)
 
+  # Generare a data frame version of the input
+  exprs_df <- as.data.frame(assay(se, "exprs"))
+  exprs_df$population_id <- rowData(se)$population_id
+
   # Run MEM
   res <- altmem(se, cluster_col = "population_id")
 
@@ -34,4 +38,12 @@ test_that("altmem() with HDCytoData Samusik_01", {
   # MEM_matrix dimensions: clusters x markers
   expect_equal(nrow(res$MEM_matrix[[1]]), 24)
   expect_gt(ncol(res$MEM_matrix[[1]]), 0)
+
+  # Run MEM using the data frame input
+  res_df <- altmem(exprs_df, cluster_col = "population_id")
+
+  # Returns the same list list
+  expect_type(res_df, "list")
+  expect_equal(names(res_df), names(res))
+  expect_equal(res_df$MEM_matrix[[1]], res$MEM_matrix[[1]])
 })

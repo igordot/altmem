@@ -8,9 +8,9 @@ altmem(
   x,
   cluster_col,
   assay_name = "exprs",
+  markers = "all",
   transform = FALSE,
   choose.markers = FALSE,
-  markers = "all",
   choose.ref = FALSE,
   zero.ref = FALSE,
   IQR.thresh = NULL
@@ -30,11 +30,11 @@ any type (character, factor, numeric).}
 \item{assay_name}{Name of the assay to use for the expression matrix.
 Only used for SummarizedExperiment input. Defaults to \code{"exprs"}.}
 
-\item{transform, choose.markers, choose.ref, zero.ref, IQR.thresh}{Passed to
-\code{\link[cytoMEM:MEM]{cytoMEM::MEM()}}.}
-
 \item{markers}{Character vector of marker names to include, or \code{"all"} to
 use all markers.}
+
+\item{transform, choose.markers, choose.ref, zero.ref, IQR.thresh}{Passed to
+\code{\link[cytoMEM:MEM]{cytoMEM::MEM()}}.}
 }
 \value{
 The return value of \code{\link[cytoMEM:MEM]{cytoMEM::MEM()}}, with row names of the

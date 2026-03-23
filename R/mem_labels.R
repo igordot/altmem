@@ -35,8 +35,8 @@ mem_labels <- function(x, min_label_score = 1, max_label_markers = 5, show_label
     pos <- pos[order(pos, decreasing = TRUE)]
     neg <- neg[order(abs(neg), decreasing = TRUE)]
 
-    pos <- pos[seq_len(min(length(pos), max_label_markers))]
-    neg <- neg[seq_len(min(length(neg), max_label_markers))]
+    pos <- head(pos, max_label_markers)
+    neg <- head(neg, max_label_markers)
 
     if (length(pos) > 0) {
       if (show_label_scores) {
