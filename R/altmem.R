@@ -1,23 +1,14 @@
 #' Marker Enrichment Modeling
 #'
-#' A wrapper around [cytoMEM::MEM()] that accepts a
-#' [SummarizedExperiment][SummarizedExperiment::SummarizedExperiment],
-#' [SingleCellExperiment][SingleCellExperiment::SingleCellExperiment], or
-#' data frame and supports non-numeric cluster labels.
-#'
-#' The expression matrix is extracted from the specified assay and transposed
-#' to cells-by-markers format. Cluster labels are converted to integer IDs
-#' for [cytoMEM::MEM()], then mapped back to the original labels in the
-#' output.
+#' A wrapper around [cytoMEM::MEM()] that accepts a data frame,
+#' [SummarizedExperiment][SummarizedExperiment::SummarizedExperiment], or
+#' [SingleCellExperiment][SingleCellExperiment::SingleCellExperiment], and
+#' supports non-numeric cluster labels.
 #'
 #' @param x A [SummarizedExperiment][SummarizedExperiment::SummarizedExperiment],
 #'   [SingleCellExperiment][SingleCellExperiment::SingleCellExperiment], or
 #'   data frame with a cluster column and numeric marker columns.
-#' @param cluster_col Name of the column containing cluster labels. For data
-#'   frames, this is ignored; the column must be named `"cluster"`. For
-#'   SummarizedExperiment, checked in `rowData(x)`, then `colData(x)`, then
-#'   `CATALYST::cluster_codes(x)` (if CATALYST is installed). Labels can be
-#'   any type (character, factor, numeric).
+#' @param cluster_col Name of the column containing cluster labels.
 #' @param assay_name Name of the assay to use for the expression matrix.
 #'   Only used for SummarizedExperiment input. Defaults to `"exprs"`.
 #' @param markers Character vector of marker names to include, or `"all"` to

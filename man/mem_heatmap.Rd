@@ -2,7 +2,7 @@
 % Please edit documentation in R/mem_heatmap.R
 \name{mem_heatmap}
 \alias{mem_heatmap}
-\title{MEM score heatmap}
+\title{Heatmap of MEM scores}
 \usage{
 mem_heatmap(
   x,
@@ -56,8 +56,5 @@ provided.}
 A \link[ComplexHeatmap:Heatmap-class]{ComplexHeatmap::Heatmap} object, invisibly.
 }
 \description{
-Visualizes MEM enrichment scores as a heatmap using
-\link[ComplexHeatmap:Heatmap]{ComplexHeatmap}. Rows are clusters and columns
-are markers. Positive scores (enriched) are shown in red and negative
-scores (depleted) are shown in blue.
+Visualizes MEM enrichment scores as a heatmap.
 }

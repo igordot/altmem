@@ -1,9 +1,6 @@
-#' MEM score heatmap
+#' Heatmap of MEM scores
 #'
-#' Visualizes MEM enrichment scores as a heatmap using
-#' [ComplexHeatmap][ComplexHeatmap::Heatmap]. Rows are clusters and columns
-#' are markers. Positive scores (enriched) are shown in red and negative
-#' scores (depleted) are shown in blue.
+#' Visualizes MEM enrichment scores as a heatmap.
 #'
 #' @inheritParams mem_labels
 #' @param show_mem_labels Whether to annotate rows with MEM labels. When `TRUE`,
