@@ -6,11 +6,14 @@
 \usage{
 mem_heatmap(
   x,
-  mem_labels = FALSE,
+  show_mem_labels = FALSE,
   min_label_score = 1,
   max_label_markers = 5,
   show_label_scores = FALSE,
   min_heatmap_score = 0,
+  filename = NULL,
+  width = 15,
+  height = 8,
   cluster_rows = TRUE,
   cluster_columns = TRUE,
   ...
@@ -19,7 +22,7 @@ mem_heatmap(
 \arguments{
 \item{x}{The return value of \code{\link[=altmem]{altmem()}} or \code{\link[cytoMEM:MEM]{cytoMEM::MEM()}}.}
 
-\item{mem_labels}{Whether to annotate rows with MEM labels. When \code{TRUE},
+\item{show_mem_labels}{Whether to annotate rows with MEM labels. When \code{TRUE},
 labels are generated via \code{\link[=mem_labels]{mem_labels()}} using \code{min_label_score},
 \code{max_label_markers}, and \code{show_label_scores}. Defaults to \code{FALSE}.}
 
@@ -33,8 +36,15 @@ included in the label. Defaults to \code{1}.}
 in the MEM labels. Defaults to \code{FALSE}.}
 
 \item{min_heatmap_score}{Minimum absolute MEM score across any cluster for
-a marker to be shown as a column in the heatmap. Markers where no cluster
-exceeds this threshold are dropped. Defaults to \code{0} (show all markers).}
+a marker to be shown as a column in the heatmap. Increase this to remove
+low variance markers. Defaults to \code{0} (show all markers).}
+
+\item{filename}{Optional file path to save the heatmap. The format is
+inferred from the extension (e.g., \code{".png"}, \code{".pdf"}, \code{".svg"}).
+Defaults to \code{NULL} (no file saved).}
+
+\item{width, height}{Plot dimensions in inches. Only used when \code{filename} is
+provided.}
 
 \item{cluster_rows}{Whether to cluster rows. Defaults to \code{TRUE}.}
 
