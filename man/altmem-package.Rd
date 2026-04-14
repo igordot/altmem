@@ -7,6 +7,13 @@
 \description{
 Automatically generate and display quantitative labels for cell populations that have been identified from flow cytometry, mass cytometry, and single-cell RNA-seq data.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://igordot.github.io/altmem/}
+}
+
+}
 \author{
 \strong{Maintainer}: Igor Dolgalev \email{igor.dolgalev@nyumc.org}
 
