@@ -1,0 +1,10 @@
+# Package index
+
+## All functions
+
+- [`altmem()`](https://igordot.github.io/altmem/reference/altmem.md) :
+  Marker Enrichment Modeling
+- [`mem_heatmap()`](https://igordot.github.io/altmem/reference/mem_heatmap.md)
+  : Heatmap of MEM scores
+- [`mem_labels()`](https://igordot.github.io/altmem/reference/mem_labels.md)
+  : Create MEM-enriched cluster labels
