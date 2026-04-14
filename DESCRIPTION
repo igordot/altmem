@@ -2,8 +2,8 @@ Package: altmem
 Title: Alternative Interface to cytoMEM Marker Enrichment Modeling
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+    person("Igor", "Dolgalev", , "igor.dolgalev@nyumc.org", role = c("aut", "cre"))
+Description: Automatically generate and display quantitative labels for cell populations that have been identified from flow cytometry, mass cytometry, and single-cell RNA-seq data.
 License: MIT + file LICENSE
 Depends:
     R (>= 4.4)
@@ -22,3 +22,4 @@ Config/testthat/edition: 3
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3
+URL: https://igordot.github.io/altmem/
