@@ -16,6 +16,7 @@
 #' @returns A named character vector.
 #'
 #' @importFrom stats setNames
+#' @importFrom utils head
 #' @export
 mem_labels <- function(x, min_label_score = 1, max_label_markers = 5, show_label_scores = TRUE) {
   if (!is_mem_output(x)) {
