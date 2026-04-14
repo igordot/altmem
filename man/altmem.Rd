@@ -17,9 +17,9 @@ altmem(
 )
 }
 \arguments{
-\item{x}{A \link[SummarizedExperiment:SummarizedExperiment-class]{SummarizedExperiment},
-\link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment}, or
-data frame with a cluster column and numeric marker columns.}
+\item{x}{A data frame with numeric marker columns and a cluster column,
+\link[SummarizedExperiment:SummarizedExperiment-class]{SummarizedExperiment}, or
+\link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment}.}
 
 \item{cluster_col}{Name of the column containing cluster labels.}
 
@@ -33,8 +33,7 @@ use all markers.}
 \code{\link[cytoMEM:MEM]{cytoMEM::MEM()}}.}
 }
 \value{
-The return value of \code{\link[cytoMEM:MEM]{cytoMEM::MEM()}}, with row names of the
-MEM matrix restored to the original cluster labels.
+A list of matrices (the return value of \code{\link[cytoMEM:MEM]{cytoMEM::MEM()}}).
 }
 \description{
 A wrapper around \code{\link[cytoMEM:MEM]{cytoMEM::MEM()}} that accepts a data frame,

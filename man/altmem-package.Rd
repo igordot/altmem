@@ -5,10 +5,10 @@
 \alias{altmem-package}
 \title{altmem: Alternative Interface to cytoMEM Marker Enrichment Modeling}
 \description{
-What the package does (one paragraph).
+Automatically generate and display quantitative labels for cell populations that have been identified from flow cytometry, mass cytometry, and single-cell RNA-seq data.
 }
 \author{
-\strong{Maintainer}: First Last \email{first.last@example.com}
+\strong{Maintainer}: Igor Dolgalev \email{igor.dolgalev@nyumc.org}
 
 }
 \keyword{internal}

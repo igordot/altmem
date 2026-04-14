@@ -5,9 +5,9 @@
 #' [SingleCellExperiment][SingleCellExperiment::SingleCellExperiment], and
 #' supports non-numeric cluster labels.
 #'
-#' @param x A [SummarizedExperiment][SummarizedExperiment::SummarizedExperiment],
-#'   [SingleCellExperiment][SingleCellExperiment::SingleCellExperiment], or
-#'   data frame with a cluster column and numeric marker columns.
+#' @param x A data frame with numeric marker columns and a cluster column,
+#'   [SummarizedExperiment][SummarizedExperiment::SummarizedExperiment], or
+#'   [SingleCellExperiment][SingleCellExperiment::SingleCellExperiment].
 #' @param cluster_col Name of the column containing cluster labels.
 #' @param assay_name Name of the assay to use for the expression matrix.
 #'   Only used for SummarizedExperiment input. Defaults to `"exprs"`.
@@ -16,8 +16,7 @@
 #' @param transform,choose.markers,choose.ref,zero.ref,IQR.thresh Passed to
 #'   [cytoMEM::MEM()].
 #'
-#' @returns The return value of [cytoMEM::MEM()], with row names of the
-#'   MEM matrix restored to the original cluster labels.
+#' @returns A list of matrices (the return value of [cytoMEM::MEM()]).
 #'
 #' @importFrom cytoMEM MEM
 #' @importFrom stats setNames
