@@ -15,11 +15,16 @@ test_that("altmem() with HDCytoData Samusik_01", {
   # Transform data using asinh with cofactor 5
   assay(se) <- asinh(assay(se) / 5)
 
-  # Generare a data frame version of the input
+  # Generate a data frame version of the input
   exprs_df <- as.data.frame(assay(se, "exprs"))
   exprs_df$population_id <- rowData(se)$population_id
 
-  # Run MEM
+  # Generate a matrix version of the input
+  exprs_mat <- exprs_df
+  exprs_mat$population_id <- as.integer(factor(exprs_mat$population_id))
+  exprs_mat <- as.matrix(exprs_mat)
+
+  # Run MEM using the SummarizedExperiment input
   res <- altmem(se, cluster_col = "population_id")
 
   # Returns a list with expected MEM slots
@@ -41,9 +46,13 @@ test_that("altmem() with HDCytoData Samusik_01", {
 
   # Run MEM using the data frame input
   res_df <- altmem(exprs_df, cluster_col = "population_id")
-
-  # Returns the same list list
   expect_type(res_df, "list")
   expect_equal(names(res_df), names(res))
   expect_equal(res_df$MEM_matrix[[1]], res$MEM_matrix[[1]])
+
+  # Run MEM using the matrix input
+  res_mat <- altmem(exprs_mat, cluster_col = "population_id")
+  expect_type(res_mat, "list")
+  expect_equal(names(res_mat), names(res))
+  expect_equal(res_mat$MEM_matrix[[1]], res$MEM_matrix[[1]], ignore_attr = TRUE)
 })
