@@ -2,7 +2,7 @@
 % Please edit documentation in R/mem-labels.R
 \name{mem_labels}
 \alias{mem_labels}
-\title{Create MEM-enriched cluster labels}
+\title{MEM-enriched cluster labels}
 \usage{
 mem_labels(
   x,
