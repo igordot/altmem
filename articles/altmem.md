@@ -14,9 +14,9 @@ Load altmem.
 
 ``` r
 library(altmem)
-#> Warning: replacing previous import 'S4Arrays::makeNindexFromArrayViewport' by
-#> 'DelayedArray::makeNindexFromArrayViewport' when loading 'SummarizedExperiment'
 ```
+
+### Prepare input data
 
 Load an example cytoMEM dataset from the mass cytometry characterization
 of normal human blood.
@@ -88,6 +88,8 @@ PBMCt <- PBMC[, colnames(PBMC) != "cluster"]
 PBMCt <- asinh(PBMCt / 15)
 PBMCt <- cbind(PBMCt, cluster = PBMC[, "cluster"])
 ```
+
+### Run altmem
 
 Run marker enrichment modeling.
 

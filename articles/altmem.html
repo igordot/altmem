@@ -70,9 +70,10 @@
 </h2>
 <p>Load altmem.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://igordot.github.io/altmem/">altmem</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: replacing previous import 'S4Arrays::makeNindexFromArrayViewport' by</span></span>
-<span><span class="co">#&gt; 'DelayedArray::makeNindexFromArrayViewport' when loading 'SummarizedExperiment'</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://igordot.github.io/altmem/">altmem</a></span><span class="op">)</span></span></code></pre></div>
+<div class="section level3">
+<h3 id="prepare-input-data">Prepare input data<a class="anchor" aria-label="anchor" href="#prepare-input-data"></a>
+</h3>
 <p>Load an example cytoMEM dataset from the mass cytometry
 characterization of normal human blood.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
@@ -136,6 +137,10 @@ transformation with a cofactor of 15.</p>
 <code class="sourceCode R"><span><span class="va">PBMCt</span> <span class="op">&lt;-</span> <span class="va">PBMC</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">PBMC</span><span class="op">)</span> <span class="op">!=</span> <span class="st">"cluster"</span><span class="op">]</span></span>
 <span><span class="va">PBMCt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Hyperbolic.html" class="external-link">asinh</a></span><span class="op">(</span><span class="va">PBMCt</span> <span class="op">/</span> <span class="fl">15</span><span class="op">)</span></span>
 <span><span class="va">PBMCt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">PBMCt</span>, cluster <span class="op">=</span> <span class="va">PBMC</span><span class="op">[</span>, <span class="st">"cluster"</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="run-altmem">Run altmem<a class="anchor" aria-label="anchor" href="#run-altmem"></a>
+</h3>
 <p>Run marker enrichment modeling.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/altmem.html">altmem</a></span><span class="op">(</span><span class="va">PBMCt</span>, cluster_col <span class="op">=</span> <span class="st">"cluster"</span><span class="op">)</span></span></code></pre></div>
@@ -207,6 +212,7 @@ and CD3, while cluster 2 (CD8+ T cells) is enriched for CD8 and CD3.</p>
 <span><span class="co">#&gt;   "3 : ▲ CD11c HLADR CD123 CD16 CD33 ▼ CD3 CD4 CD8" </span></span>
 <span><span class="co">#&gt;                                                   6 </span></span>
 <span><span class="co">#&gt;    "6 : ▲ CD11c CD33 CD61 CD14 CD11b ▼ CD3 CD4 CD8"</span></span></code></pre></div>
+</div>
 </div>
 <div class="section level2">
 <h2 id="cytomem-workflow">cytoMEM workflow<a class="anchor" aria-label="anchor" href="#cytomem-workflow"></a>

@@ -1,3 +1,5 @@
+# altmem: marker enrichment modeling
+
 altmem provides an alternative interface to
 [cytoMEM](https://doi.org/doi:10.18129/B9.bioc.cytoMEM) marker
 enrichment modeling (MEM). The enrichment scores are calculated using
