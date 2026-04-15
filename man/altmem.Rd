@@ -36,7 +36,7 @@ use all markers.}
 A list of matrices (the return value of \code{\link[cytoMEM:MEM]{cytoMEM::MEM()}}).
 }
 \description{
-A wrapper around \code{\link[cytoMEM:MEM]{cytoMEM::MEM()}} that accepts a data frame,
+A wrapper around \code{\link[cytoMEM:MEM]{cytoMEM::MEM()}} that accepts a matrix, data frame,
 \link[SummarizedExperiment:SummarizedExperiment-class]{SummarizedExperiment}, or
 \link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment}, and
 supports non-numeric cluster labels.

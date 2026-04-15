@@ -1,6 +1,6 @@
 #' Marker Enrichment Modeling
 #'
-#' A wrapper around [cytoMEM::MEM()] that accepts a data frame,
+#' A wrapper around [cytoMEM::MEM()] that accepts a matrix, data frame,
 #' [SummarizedExperiment][SummarizedExperiment::SummarizedExperiment], or
 #' [SingleCellExperiment][SingleCellExperiment::SingleCellExperiment], and
 #' supports non-numeric cluster labels.
@@ -31,11 +31,11 @@ altmem <- function(x,
                    choose.ref = FALSE,
                    zero.ref = FALSE,
                    IQR.thresh = NULL) {
-  if (is.data.frame(x)) {
-    # Rename the cluster column to "cluster" for data frames
-    names(x)[names(x) == cluster_col] <- "cluster"
-    clusters_original <- x[["cluster"]]
-    exprs_mat <- as.matrix(x[, setdiff(names(x), "cluster")])
+  if (is.matrix(x) || is.data.frame(x)) {
+    # Rename the cluster column to "cluster"
+    colnames(x)[colnames(x) == cluster_col] <- "cluster"
+    clusters_original <- x[, "cluster"]
+    exprs_mat <- as.matrix(x[, setdiff(colnames(x), "cluster")])
   } else if (inherits(x, "SummarizedExperiment")) {
     # Find cluster labels and determine orientation
     # Bioconductor convention: features in rows, cells in columns
@@ -59,7 +59,7 @@ altmem <- function(x,
       exprs_mat <- t(exprs_mat)
     }
   } else {
-    stop("'x' must be a SummarizedExperiment, SingleCellExperiment, or data frame.")
+    stop("'x' must be a matrix, data frame, SummarizedExperiment, or SingleCellExperiment")
   }
 
   # Map original labels to integer IDs
