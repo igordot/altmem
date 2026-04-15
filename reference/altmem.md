@@ -2,7 +2,7 @@
 
 A wrapper around
 [`cytoMEM::MEM()`](https://rdrr.io/pkg/cytoMEM/man/MEM.html) that
-accepts a data frame,
+accepts a matrix, data frame,
 [SummarizedExperiment](https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html),
 or
 [SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html),
