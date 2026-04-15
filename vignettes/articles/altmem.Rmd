@@ -1,0 +1,117 @@
+---
+title: "Introduction to altmem"
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Installation
+
+Install altmem.
+
+```{r install, eval=FALSE}
+BiocManager::install("igordot/altmem")
+```
+
+## Usage
+
+Load altmem.
+
+```{r setup}
+library(altmem)
+```
+
+Load an example cytoMEM dataset from the mass cytometry characterization of normal human blood.
+
+```{r data}
+data(PBMC, package = "cytoMEM")
+str(PBMC)
+```
+
+```{r}
+head(PBMC)
+```
+
+Seven cell populations were identified (the labels are stored in the `cluster` column):
+
+- 1: CD4+ T cells
+- 2: CD8+ T cells
+- 3: dendritic cells (DCs)
+- 4: IgM- B cells
+- 5: IgM+ B cells
+- 6: monocytes
+- 7: natural killer (NK) cells
+
+This dataset is not transformed, so we will apply an arcsinh transformation with a cofactor of 15.
+
+```{r data-asinh}
+PBMCt <- PBMC[, colnames(PBMC) != "cluster"]
+PBMCt <- asinh(PBMCt / 15)
+PBMCt <- cbind(PBMCt, cluster = PBMC[, "cluster"])
+```
+
+Run marker enrichment modeling.
+
+```{r altmem}
+res <- altmem(PBMCt, cluster_col = "cluster")
+```
+
+Alternatively, the transformation can be done within the MEM function.
+
+```{r altmem-transform, eval=FALSE}
+res <- altmem(PBMC, cluster_col = "cluster", transform = TRUE, cofactor = 15)
+```
+
+The output is a list of matrices containing the MEM scores and related statistics.
+
+```{r}
+str(res)
+```
+
+After the labels are calculated, we can visualize the results.
+
+```{r heatmap, fig.width=10}
+mem_heatmap(res)
+```
+
+The heatmap can be further customized: `show_mem_labels` adds the descriptive MEM labels to the cluster names,`max_label_markers` limits the number of markers shown in the labels, and `min_heatmap_score` adds a threshold for keeping only variable markers.
+
+```{r heatmap-labels, fig.width=10}
+mem_heatmap(res, show_mem_labels = TRUE, max_label_markers = 3, min_heatmap_score = 2)
+```
+
+The MEM scores and labels agree with the known biology of these cell populations. For example, cluster 1 (CD4+ T cells) is enriched for CD4 and CD3, while cluster 2 (CD8+ T cells) is enriched for CD8 and CD3.
+
+The labels can be extracted as a simple vector.
+
+```{r labels}
+mem_labels(res, min_label_score = 1, max_label_markers = 5, show_label_scores = FALSE)
+```
+
+## cytoMEM workflow
+
+For comparison, we can run the same analysis using the original cytoMEM package.
+
+```{r cytomem-mem}
+cytomem_res <- cytoMEM::MEM(PBMC, transform = TRUE, cofactor = 15)
+```
+
+As expected, the initial `MEM()` output is the same as `altmem()`.
+
+```{r}
+identical(res, cytomem_res)
+```
+
+We can also generate the cytoMEM heatmap.
+
+```{r cytomem-heatmap, fig.width=8}
+cytoMEM::build_heatmaps(cytomem_res, only.MEMheatmap = TRUE)
+```
+
+```{r cytomem-heatmap-labels, fig.width=8}
+cytoMEM::build_heatmaps(cytomem_res, display.thresh = 2, labels = TRUE, only.MEMheatmap = TRUE)
+```
