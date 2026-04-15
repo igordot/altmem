@@ -10,6 +10,7 @@ altmem(
   assay_name = "exprs",
   markers = "all",
   transform = FALSE,
+  cofactor = 1,
   choose.markers = FALSE,
   choose.ref = FALSE,
   zero.ref = FALSE,
@@ -17,7 +18,7 @@ altmem(
 )
 }
 \arguments{
-\item{x}{A data frame with numeric marker columns and a cluster column,
+\item{x}{A matrix, data frame,
 \link[SummarizedExperiment:SummarizedExperiment-class]{SummarizedExperiment}, or
 \link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment}.}
 
@@ -29,7 +30,7 @@ Only used for SummarizedExperiment input. Defaults to \code{"exprs"}.}
 \item{markers}{Character vector of marker names to include, or \code{"all"} to
 use all markers.}
 
-\item{transform, choose.markers, choose.ref, zero.ref, IQR.thresh}{Passed to
+\item{transform, cofactor, choose.markers, choose.ref, zero.ref, IQR.thresh}{Passed to
 \code{\link[cytoMEM:MEM]{cytoMEM::MEM()}}.}
 }
 \value{

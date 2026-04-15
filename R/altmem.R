@@ -5,7 +5,7 @@
 #' [SingleCellExperiment][SingleCellExperiment::SingleCellExperiment], and
 #' supports non-numeric cluster labels.
 #'
-#' @param x A data frame with numeric marker columns and a cluster column,
+#' @param x A matrix, data frame,
 #'   [SummarizedExperiment][SummarizedExperiment::SummarizedExperiment], or
 #'   [SingleCellExperiment][SingleCellExperiment::SingleCellExperiment].
 #' @param cluster_col Name of the column containing cluster labels.
@@ -13,7 +13,7 @@
 #'   Only used for SummarizedExperiment input. Defaults to `"exprs"`.
 #' @param markers Character vector of marker names to include, or `"all"` to
 #'   use all markers.
-#' @param transform,choose.markers,choose.ref,zero.ref,IQR.thresh Passed to
+#' @param transform,cofactor,choose.markers,choose.ref,zero.ref,IQR.thresh Passed to
 #'   [cytoMEM::MEM()].
 #'
 #' @returns A list of matrices (the return value of [cytoMEM::MEM()]).
@@ -27,6 +27,7 @@ altmem <- function(x,
                    assay_name = "exprs",
                    markers = "all",
                    transform = FALSE,
+                   cofactor = 1,
                    choose.markers = FALSE,
                    choose.ref = FALSE,
                    zero.ref = FALSE,
@@ -78,6 +79,7 @@ altmem <- function(x,
   mem_res <- cytoMEM::MEM(
     exp_data = mem_df,
     transform = transform,
+    cofactor = cofactor,
     choose.markers = choose.markers,
     markers = markers,
     choose.ref = choose.ref,
