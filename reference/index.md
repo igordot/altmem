@@ -7,4 +7,4 @@
 - [`mem_heatmap()`](https://igordot.github.io/altmem/reference/mem_heatmap.md)
   : Heatmap of MEM scores
 - [`mem_labels()`](https://igordot.github.io/altmem/reference/mem_labels.md)
-  : Create MEM-enriched cluster labels
+  : MEM-enriched cluster labels

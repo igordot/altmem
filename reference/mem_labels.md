@@ -1,4 +1,4 @@
-# Create MEM-enriched cluster labels
+# MEM-enriched cluster labels
 
 Generates descriptive labels for each cluster that include measured
 features specifically enriched on the population based on MEM scores,
