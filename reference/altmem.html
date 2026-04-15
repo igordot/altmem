@@ -52,6 +52,7 @@ supports non-numeric cluster labels.</p>
 <span>  assay_name <span class="op">=</span> <span class="st">"exprs"</span>,</span>
 <span>  markers <span class="op">=</span> <span class="st">"all"</span>,</span>
 <span>  transform <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  cofactor <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  choose.markers <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  choose.ref <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  zero.ref <span class="op">=</span> <span class="cn">FALSE</span>,</span>
@@ -64,7 +65,7 @@ supports non-numeric cluster labels.</p>
 
 
 <dl><dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
-<dd><p>A data frame with numeric marker columns and a cluster column,
+<dd><p>A matrix, data frame,
 <a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">SummarizedExperiment</a>, or
 <a href="https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html" class="external-link">SingleCellExperiment</a>.</p></dd>
 
@@ -83,7 +84,7 @@ Only used for SummarizedExperiment input. Defaults to <code>"exprs"</code>.</p><
 use all markers.</p></dd>
 
 
-<dt id="arg-transform-choose-markers-choose-ref-zero-ref-iqr-thresh">transform, choose.markers, choose.ref, zero.ref, IQR.thresh<a class="anchor" aria-label="anchor" href="#arg-transform-choose-markers-choose-ref-zero-ref-iqr-thresh"></a></dt>
+<dt id="arg-transform-cofactor-choose-markers-choose-ref-zero-ref-iqr-thresh">transform, cofactor, choose.markers, choose.ref, zero.ref, IQR.thresh<a class="anchor" aria-label="anchor" href="#arg-transform-cofactor-choose-markers-choose-ref-zero-ref-iqr-thresh"></a></dt>
 <dd><p>Passed to
 <code><a href="https://rdrr.io/pkg/cytoMEM/man/MEM.html" class="external-link">cytoMEM::MEM()</a></code>.</p></dd>
 

@@ -17,6 +17,7 @@ altmem(
   assay_name = "exprs",
   markers = "all",
   transform = FALSE,
+  cofactor = 1,
   choose.markers = FALSE,
   choose.ref = FALSE,
   zero.ref = FALSE,
@@ -28,7 +29,7 @@ altmem(
 
 - x:
 
-  A data frame with numeric marker columns and a cluster column,
+  A matrix, data frame,
   [SummarizedExperiment](https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html),
   or
   [SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html).
@@ -47,7 +48,7 @@ altmem(
   Character vector of marker names to include, or `"all"` to use all
   markers.
 
-- transform, choose.markers, choose.ref, zero.ref, IQR.thresh:
+- transform, cofactor, choose.markers, choose.ref, zero.ref, IQR.thresh:
 
   Passed to
   [`cytoMEM::MEM()`](https://rdrr.io/pkg/cytoMEM/man/MEM.html).
